@@ -78,11 +78,11 @@ def monitor_rounds(log_file):
                 for line in lines:
                     # zap zap when dying
                     if "Died in round." in line:
-                        events.death_event(round_ended=False)
+                        events.death_event(round_ended=True)
 
                     # zap zap when dead on round end
                     elif "You died." in line:
-                        events.death_event(round_ended=True)
+                        events.death_event(round_ended=False)
 
                     elif "Player respawned, opted out!" in line:
                         print("bad! no respawning!")

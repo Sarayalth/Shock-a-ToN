@@ -6,13 +6,14 @@ def check_event(event):
     
     valid_shockers = [shocker for shocker in shockers if event in shocker.get("events", [])]
 
-    match event:
-        case "death" | "death_end_round":
-            main.trigger_shock(valid_shockers)
-        case "dtm":
-            main.trigger_shock(valid_shockers, duration=5000, shock_type="Shock")
-        case "respawn":
-            main.trigger_shock(valid_shockers, duration=5000, shock_type="Shock")
+    if valid_shockers:
+        match event:
+            case "death" | "death_end_round":
+                main.trigger_shock(valid_shockers)
+            case "dtm":
+                main.trigger_shock(valid_shockers, duration=5000, shock_type="Shock")
+            case "respawn":
+                main.trigger_shock(valid_shockers, duration=5000, shock_type="Shock")
 
 def death_event(round_ended=False):
     if main.round_type == "Bloodbath":
